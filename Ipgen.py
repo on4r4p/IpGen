@@ -62,6 +62,9 @@ parser.add_argument("-c","--Cidr",dest="Cidr",help="Ipv4/prefix",default=None,me
 parser.add_argument("-o","--output",dest="Output",help="Output filename",default=None,metavar="Output")
 Args = parser.parse_args()
 
+if len(sys.argv)==1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
 
 
 if Args.Cidr is None and (Args.Min is None or Args.Max is None):
@@ -70,11 +73,6 @@ if Args.Cidr is None and (Args.Min is None or Args.Max is None):
     sys.exit(1)
 if Args.Cidr is not None and (Args.Min is not None or Args.Max is not None):
     print("-c can't be used with -m and -M .\nArgument Error!\n")
-    parser.print_help(sys.stderr)
-    sys.exit(1)
-
-
-if len(sys.argv)==1:
     parser.print_help(sys.stderr)
     sys.exit(1)
 
